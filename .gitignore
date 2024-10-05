@@ -1,0 +1,25 @@
+# hidden files
+.*
+!.git*
+!.editorconfig
+!.nojekyll
+!.travis.yml
+
+# bundler cache
+_site
+vendor
+
+# rubygem
+*.gem
+
+# npm dependencies
+node_modules
+package-lock.json
+Gemfile.lock
+
+_posts/2021-12-14-test.md
+_layouts/post.html.org
+_layouts/post.html.utterance
+_includes/refactor-content.html.org
+
+
