@@ -1,8 +1,8 @@
 ---
 ---
 
-@import 'main
-{%- if jekyll.environment == 'production' -%}
+@use 'main
+{%- if jekyll.environment == ' production ' -%}
   .bundle
 {%- endif -%}
 ';
