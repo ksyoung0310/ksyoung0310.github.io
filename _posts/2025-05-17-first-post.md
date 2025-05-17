@@ -1,6 +1,5 @@
 ---
 layout: post
-title: "GitHub 시작하기"
 date: 2025-05-17 15:30:00 +0900
 categories: [Github]
 tags: [Github]
