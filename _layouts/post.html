@@ -15,69 +15,72 @@ script_includes:
 
 <article class="px-1" data-toc="{{ enable_toc }}">
   <header>
-    <h1 data-toc-skip>{{ page.title }}</h1>
+  <h1 data-toc-skip>{{ page.title }}</h1>
 
-    {% if page.description %}
-      <p class="post-desc fw-light mb-4">{{ page.description }}</p>
-    {% endif %}
+  {% if page.description %}
+    <p class="post-desc fw-light mb-4">{{ page.description }}</p>
+  {% endif %}
 
-    <div class="post-meta text-muted">
-      <!-- author -->
-      <div>
-        {{ site.data.locales[lang].post.written_by }}
-        <em>
-          {% if page.author %}
-            {% assign authors = page.author %}
-          {% elsif page.authors %}
-            {% assign authors = page.authors %}
-          {% endif %}
-
-          {% if authors %}
-            {% for author in authors %}
-              {% if site.data.authors[author].url -%}
-                <a href="{{ site.data.authors[author].url }}">{{ site.data.authors[author].name }}</a>
-              {%- else -%}
-                {{ site.data.authors[author].name }}
-              {%- endif %}
-              {% unless forloop.last %}, {% endunless %}
-            {% endfor %}
-          {% else %}
-            <a href="{{ site.social.links[0] }}">{{ site.social.name }}</a>
-          {% endif %}
-        </em>
-      </div>
-
-      <!-- meta line: posted • updated • read time -->
-      <div>
-        {{ site.data.locales[lang].post.posted }}
-        {% include datetime.html date=page.date tooltip=false lang=lang %}
-
-        {% if page.last_modified_at and page.last_modified_at != page.date %}
-          • {{ site.data.locales[lang].post.updated }}
-          {% include datetime.html date=page.last_modified_at tooltip=false lang=lang %}
-        {% endif %}
-
-        • {% include read-time.html content=content prompt=false lang=lang %}
-      </div>
-    </div>
-
-    {% if page.image %}
-      {% capture src %}src="{{ page.image.path | default: page.image }}"{% endcapture %}
-      {% capture class %}class="preview-img{% if page.image.no_bg %}{{ ' no-bg' }}{% endif %}"{% endcapture %}
-      {% capture alt %}alt="{{ page.image.alt | xml_escape | default: "Preview Image" }}"{% endcapture %}
-
-      {% if page.image.lqip %}
-        {%- capture lqip -%}lqip="{{ page.image.lqip }}"{%- endcapture -%}
+<!-- 작성자 + 날짜 한 줄에 배치 -->
+<div class="d-flex justify-content-between text-muted small mb-2">
+  <!-- 작성자 왼쪽 -->
+  <div>
+    {{ site.data.locales[lang].post.written_by }}
+    <em>
+      {% if page.author %}
+        {% assign authors = page.author %}
+      {% elsif page.authors %}
+        {% assign authors = page.authors %}
       {% endif %}
 
-      <div class="mt-3 mb-3">
-        <img {{ src }} {{ class }} {{ alt }} w="1200" h="630" {{ lqip }}>
-        {%- if page.image.alt -%}
-          <figcaption class="text-center pt-2 pb-2">{{ page.image.alt }}</figcaption>
-        {%- endif -%}
-      </div>
+      {% if authors %}
+        {% for author in authors %}
+          {% if site.data.authors[author].url %}
+            <a href="{{ site.data.authors[author].url }}">{{ site.data.authors[author].name }}</a>
+          {% else %}
+            {{ site.data.authors[author].name }}
+          {% endif %}
+          {% unless forloop.last %}, {% endunless %}
+        {% endfor %}
+      {% else %}
+        <a href="{{ site.social.links[0] }}">{{ site.social.name }}</a>
+      {% endif %}
+    </em>
+  </div>
+
+  <!-- 날짜 오른쪽 -->
+  <div class="text-end">
+    <div>
+      {{ site.data.locales[lang].post.posted }}
+      {% include datetime.html date=page.date tooltip=false lang=lang %}
+    </div>
+    <div>
+      {% if page.last_modified_at and page.last_modified_at != page.date %}
+        {{ site.data.locales[lang].post.updated }}
+        {% include datetime.html date=page.last_modified_at tooltip=false lang=lang %}
+        • {% include read-time.html content=content prompt=false lang=lang %}
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+  <!-- 미리보기 이미지 표시 -->
+  {% if page.image %}
+    {% capture src %}src="{{ page.image.path | default: page.image }}"{% endcapture %}
+    {% capture class %}class="preview-img{% if page.image.no_bg %} no-bg{% endif %}"{% endcapture %}
+    {% capture alt %}alt="{{ page.image.alt | xml_escape | default: 'Preview Image' }}"{% endcapture %}
+    {% if page.image.lqip %}
+      {% capture lqip %}lqip="{{ page.image.lqip }}"{% endcapture %}
     {% endif %}
-  </header>
+    <div class="mt-3 mb-3">
+      <img {{ src }} {{ class }} {{ alt }} width="1200" height="630" {{ lqip }}>
+      {% if page.image.alt %}
+        <figcaption class="text-center pt-2 pb-2">{{ page.image.alt }}</figcaption>
+      {% endif %}
+    </div>
+  {% endif %}
+</header>
+
 
   {% if enable_toc %}
     <div id="toc-bar" class="d-flex align-items-center justify-content-between invisible">
