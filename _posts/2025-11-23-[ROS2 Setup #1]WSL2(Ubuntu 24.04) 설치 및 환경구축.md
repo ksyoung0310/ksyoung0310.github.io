@@ -3,7 +3,7 @@ layout: post
 title: "[ROS2 Setup #1]WSL2(Ubuntu 24.04) 설치 및 환경구축"
 date: 2025-11-23 20:00:00 +0900
 categories: [Embedded System, Robotics]
-tags: [Embedded, WSL2, ROS2, Jazzy, Lidar]
+tags: [Embedded, WSL2]
 ---
 
 ## **WSL2 설치 과정**
