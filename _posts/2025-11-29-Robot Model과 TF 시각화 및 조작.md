@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Robot Model과 TF 시각화 및 조작"
-date: 2025-11-30 20:00:00 +0900
+date: 2025-11-29 20:00:00 +0900
 categories: [ROS2]
 tags: [Embedded, ROS2, Jazzy, TF]
 ---
