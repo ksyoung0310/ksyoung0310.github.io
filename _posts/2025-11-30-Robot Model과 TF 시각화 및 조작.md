@@ -29,7 +29,7 @@ cd /opt/ros/jazzy
 ls
 ```
 
-![Screenshot from 2025-12-01 11-12-22](/home/ksy/Desktop/GitHub/ksyoung0310.github.io/images/2025-11-30-로봇 시각화 시작하기(1)/TFs_01.png)
+![Screenshot from 2025-12-01 11-12-22](../images/2025-11-30-로봇 시각화 시작하기(1)/TFs_01.png)
 
 
 
@@ -45,7 +45,7 @@ ls
 ros2 launch urdf_tutorial display.launch.py model:=urdf/08-macroed.urdf.xacro
 ```
 
-![TFs_02](/home/ksy/Desktop/GitHub/ksyoung0310.github.io/images/2025-11-30-로봇 시각화 시작하기(1)/TFs_02.png)
+![TFs_02](../images/2025-11-30-로봇 시각화 시작하기(1)/TFs_02.png)
 
 Rviz2의 Displays의 옵션에는 Grid, RobotModel, TF 등이 존재합니다. 각각의 기능들을 아래에서 살펴보겠습니다.
 
@@ -58,7 +58,7 @@ Rviz2의 Displays의 옵션에는 Grid, RobotModel, TF 등이 존재합니다. �
 - 링크 목록: `RobotModel` 항목을 펼쳐서 `links` 항목을 보면 로봇을 구성하는 모든 부품들의 목록을 확인할 수 있습니다.
 - 시각화 제어: 특정 링크를 체크 해제하면 그 부품만 화면에서 사라집니다. 이 기능을 사용하여 로봇의 부품 구성을 파악할 수 있습니다.
 
-![image-20251201120852021](/home/ksy/Desktop/GitHub/ksyoung0310.github.io/images/2025-11-30-로봇 시각화 시작하기(1)/image-20251201120852021.png)
+![image-20251201120852021](../images/2025-11-30-로봇 시각화 시작하기(1)/image-20251201120852021.png)
 
 #### 3.2. 투명도 조절(Alpha)
 
@@ -86,7 +86,7 @@ Rviz2의 Displays의 옵션에는 Grid, RobotModel, TF 등이 존재합니다. �
 
 Joint State Publisher GUI 창으로 로봇의 움직임을 실시간으로 관찰할 수 있습니다.
 
-![Screenshot from 2025-12-01 11-54-35](/home/ksy/Desktop/GitHub/ksyoung0310.github.io/images/2025-11-30-로봇 시각화 시작하기(1)/Screenshot from 2025-12-01 11-54-35.png)
+![Screenshot from 2025-12-01 11-54-35](../images/2025-11-30-로봇 시각화 시작하기(1)/Screenshot from 2025-12-01 11-54-35.png)
 
 1. **슬라이더 조작:** GUI 창에는 로봇의 가동 관절(`right_front_wheel_joint`, `gripper_extension`, `head_swivel` 등)의 이름과 슬라이더가 표시됩니다.
 
