@@ -3,7 +3,7 @@ layout: post
 title: "Robot Model과 TF 시각화 및 조작"
 date: 2025-11-29 20:00:00 +0900
 categories: [ROS2]
-tags: [Embedded, ROS2, Jazzy, TF]
+tags: [ROS2, Jazzy, TF]
 ---
 
 앞에서 패키지를 설치하였다고 가정하고 이제 로봇을 시각화하고 로봇을 위한 TF에 대해서 알아보겠습니다. 아직 로봇을 만들지 않았기 때문에 기존의 생성되어있는 URDF 튜토리얼 패키지를 설치하여 진행하겠습니다.
