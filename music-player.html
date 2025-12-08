@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎵 Music Player</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+        :root {
+            /* ✨ 사이버 청록색 계열로 변경 */
+            --primary-color: #0dcfef;   /* 청록색 */
+            --secondary-color: #3871ff; /* 밝은 파란색 */
+            --glass-bg: rgba(255, 255, 255, 0.9);
+            --text-primary: #333333;
+            --text-secondary: #666666;
+            --shadow-light: rgba(13, 207, 239, 0.4); /* 청록색 그림자 */
+            --shadow-dark: rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: var(--text-primary);
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .player-container {
+            width: 320px;
+            height: 600px;
+            background: var(--glass-bg);
+            border-radius: 30px;
+            box-shadow: 0 20px 50px var(--shadow-dark);
+            backdrop-filter: blur(25px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .header {
+            padding: 15px 25px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(255,255,255,0.1);
+            border: none;
+            color: var(--text-primary);
+            font-size: 1em;
+            cursor: pointer;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s;
+        }
+
+        .close-btn:hover {
+            background: var(--primary-color);
+        }
+        
+        .album-art-container {
+            margin: 15px auto;
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .album-art {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background-image: url('https://github.com/joonk2/mySvg/blob/main/chill-kitty-loop-unlimited.gif?raw=true');
+            background-size: cover;
+            background-position: center;
+            border: 5px solid rgba(255,255,255,0.1);
+            animation: spin 30s linear infinite;
+            animation-play-state: paused;
+        }
+        
+        .album-art.playing {
+            animation-play-state: running;
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .now-playing {
+            padding: 0 25px;
+            text-align: center;
+        }
+        
+        .song-title {
+            font-size: 1.5em;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 5px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .song-artist {
+            font-size: 1em;
+            color: var(--text-secondary);
+        }
+
+        .progress-section {
+            padding: 15px 25px;
+        }
+
+        .progress-container {
+            width: 100%;
+            height: 6px;
+            background: rgba(0,0,0,0.1);
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            border-radius: 3px;
+            width: 0%;
+        }
+
+        .time-info {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.8em;
+            color: var(--text-secondary);
+            margin-top: 10px;
+        }
+
+        .controls {
+            padding: 8px 25px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .control-btn {
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            cursor: pointer;
+            font-size: 1.3em;
+            transition: all 0.3s;
+        }
+
+        .control-btn:hover {
+            color: var(--primary-color);
+        }
+
+        .play-btn {
+            font-size: 2.5em;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            border-radius: 50%;
+            color: white;
+            box-shadow: 0 5px 15px var(--shadow-light);
+        }
+
+        .play-btn:hover {
+            transform: scale(1.1);
+            color: white;
+        }
+
+        .volume-control {
+            padding: 8px 25px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .volume-slider {
+            flex: 1;
+            -webkit-appearance: none;
+            appearance: none;
+            width: 100%;
+            height: 6px;
+            background: rgba(0,0,0,0.1);
+            border-radius: 3px;
+            outline: none;
+        }
+        
+        .volume-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 16px;
+            height: 16px;
+            background: var(--primary-color);
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        .playlist {
+            flex: 1;
+            overflow-y: auto;
+            border-top: 1px solid rgba(0,0,0,0.1);
+            margin-top: 8px;
+            max-height: 280px;
+        }
+
+        .playlist-item {
+            padding: 10px 25px;
+            cursor: pointer;
+            transition: background 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+        
+        /* 청록색 계열 hover 배경 */
+        .playlist-item:hover {
+            background: rgba(13, 207, 239, 0.1); 
+        }
+
+        .playlist-item.active {
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            color: white;
+        }
+
+        .playlist-item.active .playlist-item-title,
+        .playlist-item.active .playlist-item-duration {
+            color: white;
+        }
+        
+        .playlist-item-number {
+            font-size: 0.9em;
+            color: var(--text-secondary);
+            width: 20px;
+        }
+        .playlist-item-title {
+            flex: 1;
+            font-size: 0.9em;
+            font-weight: 600;
+        }
+        .playlist-item-duration {
+            font-size: 0.8em;
+            color: var(--text-secondary);
+        }
+
+        .playlist::-webkit-scrollbar {
+            width: 6px;
+        }
+        .playlist::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .playlist::-webkit-scrollbar-thumb {
+            background: rgba(0,0,0,0.2);
+            border-radius: 3px;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="player-container">
+        <div class="header">
+            <button class="close-btn" onclick="window.close()"><i class="fas fa-times"></i></button>
+        </div>
+
+        <div class="album-art-container">
+            <div class="album-art" id="albumArt"></div>
+        </div>
+
+        <div class="now-playing">
+            <div class="song-title" id="songTitle">로딩 중...</div>
+            <div class="song-artist" id="songArtist">-</div>
+        </div>
+
+        <div class="progress-section">
+            <div class="progress-container" id="progressContainer">
+                <div class="progress-bar" id="progressBar"></div>
+            </div>
+            <div class="time-info">
+                <span id="currentTime">0:00</span>
+                <span id="totalTime">0:00</span>
+            </div>
+        </div>
+        
+        <div class="controls">
+            <button class="control-btn" id="prevBtn" onclick="prevMusic()"><i class="fas fa-backward-step"></i></button>
+            <button class="control-btn play-btn" id="playBtn" onclick="togglePlay()"><i class="fas fa-play"></i></button>
+            <button class="control-btn" id="nextBtn" onclick="nextMusic()"><i class="fas fa-forward-step"></i></button>
+        </div>
+
+        <div class="volume-control">
+            <i class="fas fa-volume-low"></i>
+            <input type="range" class="volume-slider" id="volumeSlider" min="0" max="100" value="100">
+            <i class="fas fa-volume-high"></i>
+        </div>
+
+        <div class="playlist" id="playlist"></div>
+    </div>
+
+    <script>
+        const musicData = [       
+            {
+                title: "i love egg",
+                artist: "i-love-egg",
+                url: "https://github.com/joonk2/music/raw/music/i-love-egg.mp3",
+                duration: "1:17" 
+            },
+            {
+                title: "cookier-run-violin",
+                artist: "dev sisters",
+                url: "https://github.com/joonk2/music/raw/music/cookier-run-violin.mp3",
+                duration: "1:37" 
+            },
+            {
+                title: "fantasy-01",
+                artist: "Joonhwan.K",
+                url: "https://github.com/joonk2/music/raw/music/suno-fantasy-01.mp3",
+                duration: "1:55"                
+            },          
+            {
+                title: "cookie-run-frozen-tower",
+                artist: "dev sisters",
+                url: "https://github.com/joonk2/music/raw/music/cookie-run-frozen-tower.mp3",
+                duration: "0:32"                
+            },
+
+        ];
+
+        let audio = new Audio();
+        let currentTrack = 0;
+        let isPlaying = false;
+
+        const playBtnIcon = document.querySelector('#playBtn i');
+        const albumArt = document.getElementById('albumArt');
+
+        function init() {
+            const savedState = JSON.parse(localStorage.getItem('musicPlayerState')) || {};
+            currentTrack = savedState.currentTrack !== undefined ? savedState.currentTrack : 0;
+            if (savedState.volume !== undefined) {
+                audio.volume = savedState.volume / 100;
+                document.getElementById('volumeSlider').value = savedState.volume;
+            }
+
+            createPlaylist();
+            setupEventListeners();
+            loadTrack(currentTrack);
+            
+            audio.play().then(() => {
+                isPlaying = true;
+                updatePlayButton();
+            }).catch(() => {
+                isPlaying = false;
+                updatePlayButton();
+            });
+        }
+
+        function createPlaylist() {
+            const playlist = document.getElementById('playlist');
+            playlist.innerHTML = '';
+            musicData.forEach((song, index) => {
+                const item = document.createElement('div');
+                item.className = 'playlist-item';
+                item.innerHTML = `
+                    <span class="playlist-item-number">${String(index + 1).padStart(2, '0')}</span>
+                    <span class="playlist-item-title">${song.title}</span>
+                    <span class="playlist-item-duration">${song.duration}</span>
+                `;
+                item.onclick = () => playTrack(index);
+                playlist.appendChild(item);
+            });
+        }
+
+        function setupEventListeners() {
+            audio.addEventListener('timeupdate', updateProgress);
+            audio.addEventListener('ended', nextMusic);
+            audio.addEventListener('loadedmetadata', () => {
+                document.getElementById('totalTime').textContent = formatTime(audio.duration);
+            });
+            document.getElementById('progressContainer').addEventListener('click', seek);
+            document.getElementById('volumeSlider').addEventListener('input', updateVolume);
+        }
+
+        function loadTrack(index) {
+            currentTrack = index;
+            audio.src = musicData[index].url;
+            updateSongInfo();
+            updatePlaylistActive();
+            saveState();
+        }
+
+        function updateSongInfo() {
+            const song = musicData[currentTrack];
+            document.getElementById('songTitle').textContent = song.title;
+            document.getElementById('songArtist').textContent = song.artist;
+        }
+
+        function updatePlaylistActive() {
+            document.querySelectorAll('.playlist-item').forEach((item, index) => {
+                item.classList.toggle('active', index === currentTrack);
+            });
+        }
+        
+        function togglePlay() {
+            isPlaying = !isPlaying;
+            if (isPlaying) {
+                audio.play();
+            } else {
+                audio.pause();
+            }
+            updatePlayButton();
+        }
+
+        function updatePlayButton() {
+            playBtnIcon.className = isPlaying ? 'fas fa-pause' : 'fas fa-play';
+            albumArt.classList.toggle('playing', isPlaying);
+        }
+
+        function nextMusic() {
+            currentTrack = (currentTrack + 1) % musicData.length;
+            playTrack(currentTrack);
+        }
+
+        function prevMusic() {
+            currentTrack = (currentTrack - 1 + musicData.length) % musicData.length;
+            playTrack(currentTrack);
+        }
+
+        function playTrack(index) {
+            loadTrack(index);
+            isPlaying = true;
+            audio.play();
+            updatePlayButton();
+        }
+
+        function updateProgress() {
+            const progressPercent = (audio.currentTime / audio.duration) * 100;
+            document.getElementById('progressBar').style.width = progressPercent + '%';
+            document.getElementById('currentTime').textContent = formatTime(audio.currentTime);
+        }
+
+        function formatTime(seconds) {
+            if (isNaN(seconds)) return '0:00';
+            const mins = Math.floor(seconds / 60);
+            const secs = Math.floor(seconds % 60);
+            return `${mins}:${secs.toString().padStart(2, '0')}`;
+        }
+
+        function seek(e) {
+            const width = e.target.clientWidth;
+            const clickX = e.offsetX;
+            audio.currentTime = (clickX / width) * audio.duration;
+        }
+
+        function updateVolume() {
+            audio.volume = document.getElementById('volumeSlider').value / 100;
+            saveState();
+        }
+
+        function saveState() {
+            localStorage.setItem('musicPlayerState', JSON.stringify({
+                currentTrack: currentTrack,
+                volume: document.getElementById('volumeSlider').value
+            }));
+        }
+        
+        window.addEventListener('beforeunload', saveState);
+
+        init();
+    </script>
+</body>
+</html> 

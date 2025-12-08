@@ -40,6 +40,109 @@
     </ul>
   </nav>
 
+  <!-- --------------------------------------------팝업 음악 플레이어 버튼-------------------------------------------------- -->
+  <!-- 음악 플레이어 팝업 버튼 -->
+  <div id="music-controls" class="buttons" style="text-align: center; position: relative;">
+    <button id="musicPlayerBtn" class="speech-bubble-btn" onclick="openMusicPlayer()">Music Start!</button>
+    <img id="musicGif" src="https://github.com/ksyoung0310.github.io/images/music.gif" alt="Music GIF" style="display: inline-block; width: 100px; height: 100px; margin-top: 10px; margin-left: -18px;">
+  </div>
+
+  <style>
+    .speech-bubble-btn {
+      position: relative;
+      background: linear-gradient(135deg, #0dcfef 0%, #3871ff 100%)
+      color: white;
+      border: 3px solid #fff;
+      padding: 12px 20px;
+      border-radius: 25px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      margin-bottom: 15px;
+      box-shadow: 0 6px 20px rgb(13, 239, 227);
+      transition: all 0.3s ease;
+      animation: cuteBlink 3s infinite;
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+    }
+
+    .speech-bubble-btn::after {
+      content: '';
+      position: absolute;
+      top: 100%;
+      left: 30px;
+      width: 0;
+      height: 0;
+      border-left: 12px solid transparent;
+      border-right: 12px solid transparent;
+      border-top: 15px solid #0dcfef;
+      filter: drop-shadow(0 2px 2px rgba(0,0,0,0.1));
+    }
+
+    .speech-bubble-btn::before {
+      content: '';
+      position: absolute;
+      top: 100%;
+      left: 30px;
+      width: 0;
+      height: 0;
+      border-left: 9px solid transparent;
+      border-right: 9px solid transparent;
+      border-top: 12px solid #fff;
+      margin-top: 3px;
+    }
+
+    .speech-bubble-btn:hover {
+      transform: translateY(-3px) scale(1.05);
+      box-shadow: 0 8px 25px rgba(13, 207, 239, 0.5);
+      animation: none;
+      background: linear-gradient(135deg, #0ac2e0 0%, #3065e8 100%)
+    }
+
+    .speech-bubble-btn:active {
+      transform: translateY(-1px) scale(1.02);
+    }
+
+    @keyframes cuteBlink {
+      0%, 100% {
+        opacity: 1;
+        transform: translateY(0);
+        box-shadow: 0 6px 20px rgba(13, 207, 239, 0.3)
+      }
+      50% {
+        opacity: 0.8;
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(13, 207, 239, 0.5);
+      }
+    }
+
+    /* 고양이 이미지에 약간의 움직임 효과 */
+    #musicGif {
+      animation: gentleBounce 2s ease-in-out infinite;
+    }
+
+    @keyframes gentleBounce {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-3px);
+      }
+    }
+  </style>
+
+  <script>
+    function openMusicPlayer() {
+      const width = 360;
+      const height = 650;
+      const left = (screen.width - width) / 2;
+      const top = (screen.height - height) / 2;
+      
+      window.open('/music-player.html', 'musicPlayer', 
+        `width=${width},height=${height},left=${left},top=${top},scrollbars=no,resizable=yes,status=no,location=no,toolbar=no,menubar=no`);
+    }
+  </script>
+
   <div class="sidebar-bottom d-flex flex-wrap  align-items-center w-100">
     {% unless site.theme_mode %}
       <button type="button" class="btn btn-link nav-link" aria-label="Switch Mode" id="mode-toggle">
@@ -92,6 +195,8 @@
       {% endif %}
     {% endfor %}
   </div>
+  
   <!-- .sidebar-bottom -->
+   
 </aside>
 <!-- #sidebar -->
