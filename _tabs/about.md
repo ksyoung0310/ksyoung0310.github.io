@@ -4,55 +4,52 @@ icon: fas fa-info-circle
 order: 4
 ---
 
-E-mail : tjrduddl0310@gmail.com
-
-GitHub : ksyoung0310
-
-BOJ : ksyoung0310
-
 알고리즘과 개발을 공부하고 있는 개발자입니다.
 
-진로에 대해 많은 고민을 하다가 임베디드 개발자를 꿈꾸는 학생입니다.
+현재는 **임베디드(Embedded) SW 개발자**를 목표로 진로를 설정하고, 관련 분야의 역량을 집중적으로 키우고 있습니다. 이론 학습과 더불어 실제 하드웨어와 연동되는 프로젝트를 통해 실무 역량을 쌓는 데 주력하고 있습니다.
+
+**E-mail : tjrduddl0310@gmail.com**
+
+**GitHub : ksyoung0310**
+
+**BOJ : ksyoung0310**
 
 
 
+## 🔨 **Key Skills & Tech Stacks**
+
+임베디드 개발자가 되기 위해 학습 중이거나 프로젝트에서 활용한 주요 기술 스택입니다.
+
+- **언어:** C/C++, Python(AI), Java
+- **플랫폼/환경:** Android Studio, Linux
+- **데이터베이스:** Firebase (Backend as a Service)
 
 
-## **Projects**
 
-### <span style="color:green">**SCA(공부 집중력 분석 )(2024.09 ~ 2024.12)**
+## 🚀 **Projects**
+
+### <span style="color:green">**SCA(공부 집중력 분석 )(2024.04 ~ 2024.12)**
 
 - 스마트워치와 연동된 앱 개발 - UI 및 백엔드(DB) 개발
-- Android Studio, Firebase
+- 사용자의 집중도 데이터를 분석하고 시각화하는 시스템 구축 및 UI/DB 연동 구현
 
 
 
-### <span style="color:green">**OIPP(2025.03 ~ 2025.06)**
+## 🏆 **Awards** & Activities
 
-- AI를 활용한 사진 분석을 통한 가격 예측 프로그램 개발 - AI 및 백엔드(DB) 개발
-- Python, Firebase
+### Awards
 
-
-
-## **Activity**
-
-- 업데이트 예정
+- 2024 - 2학기 한국해양대학교 캡스톤디자인 경진대회 대상
 
 
 
 ## **Certificate**
 
 - 정보처리기사(2025.12)
-- ADsP(미정)
-- SQLD(미정)
-- 리눅스마스터(미정)
-- AICE(미정)
+- 리눅스마스터 2급
+- 컴퓨터시스템기사
 
 
-
-## **Awards**
-
-- 2024 - 2학기 한국해양대학교 캡스톤디자인 경진대회 대상
 
 
 
