@@ -6,13 +6,13 @@ categories: [ROS2]
 tags: [Gazebo, Rviz, Linux]
 ---
 
-이번에는 Gazebo와 Rviz를 이용하여 라이다(Lidar) 센서를 통해 받아온 데이터로 Localization과 매핑(Mapping)을 해 보도록 하겠다. 매핑을 하기 위해서는 우선 URDF 파일로 로봇을 구성하여 Gazebo 환경에 로봇을 소환(Spawn)해야 하며, 이를 실행할 Launch 파일도 필요하다. 특히 현재 최신 버전인 **ROS 2 Jazzy** 환경에서 매핑을 진행하는 자료가 부족하여 여러 시행착오를 겪었다. 이 글에서는 트러블슈팅 과정과 정확한 설정 방법을 정리해 본다. 전체 코드는 [GitHub](https://github.com/ksyoung0310/ros2-jazzy-study) 저장소에서 확인할 수 있다. 환경은 **Ubuntu 24.04 (Noble Numbat)** 기반의 ROS 2 Jazzy에서 실행한다.
+이번에는 `Gazebo `와 `Rviz` 를 이용하여 **라이다(Lidar)** 센서를 통해 받아온 데이터로 **매핑(Mapping)**을 해 보도록 하겠다. 매핑을 하기 위해서는 우선 URDF 파일로 로봇을 구성하여 `Gazebo` 환경에 로봇을 소환(Spawn)해야 하며, 이를 실행할 `Launch` 파일도 필요하다. 특히 현재 최신 버전인 **ROS 2 Jazzy** 환경에서 매핑을 진행하는 자료가 부족하여 여러 시행착오를 겪었다. 이 글에서는 트러블슈팅 과정과 정확한 설정 방법을 정리해 본다. 전체 코드는 [GitHub](https://github.com/ksyoung0310/ros2-jazzy-study) 저장소에서 확인할 수 있다. 환경은 **Ubuntu 24.04 기반의 ROS 2 Jazzy에서 실행한다.
 
 ### **URDF 정의 및 환경 설정**
 
 #### **1. URDF의 정의**
 
-URDF(Unified Robot Description Format)는 로봇의 물리적 형상과 기구학적 특성을 정의하는 XML 기반의 파일 포맷이다. ROS에서 로봇 모델을 시각화(RViz)하거나 시뮬레이션(Gazebo)하기 위해 필수적으로 사용한다.
+URDF(Unified Robot Description Format)는 로봇의 물리적 형상을 정의하는 XML 기반의 파일 포맷이다. ROS에서 로봇 모델을 시각화(RViz)하거나 시뮬레이션(Gazebo)하기 위해 필수적으로 사용한다.
 
 - **Links (링크):** 로봇의 뼈대(Chassis, 바퀴, 센서 등)를 구성하는 강체 부분이다. 시각적(Visual), 충돌(Collision), 관성(Inertial) 속성을 정의한다.
 - **Joints (관절):** 링크와 링크를 연결하며, 회전(Continuous/Revolute)하거나 직선 운동(Prismatic) 등의 움직임을 정의한다.
@@ -55,7 +55,7 @@ sudo apt install -y python3-colcon-common-extensions python3-rosdep python3-argc
 
 #### **2. 시뮬레이션 관련 패키지(Gazebo Sim)**
 
-Gazebo와 ROS 2 사이의 통신을 위해서는 **Bridge**가 필수적이다. `ros_gz` 패키지가 이 역할을 담당한다.
+`Gazebo와 ROS 2 사이의 통신` 을 위해서는 **Bridge**가 필수적이다. `ros_gz` 패키지가 이 역할을 담당한다.
 
 ```bash
 sudo apt install -y ros-jazzy-ros-gz \
@@ -145,7 +145,7 @@ ros2 run teleop_twist_keyboard teleop_twist_keyboard --ros-args -p use_sim_time:
 
 ### **ROS 2 Lifecycle Management 설정**
 
-ROS 2(특히 Nav2 스택)에서는 노드의 자원 관리를 위해 **Lifecycle(생명주기)** 개념을 사용한다. 노드가 실행되더라도 바로 작동하는 것이 아니라 `Unconfigured` → `Inactive` → `Active` 상태 전이를 거쳐야 한다.
+ROS 2 jazzy 버전에서는 노드의 자원 관리를 위해 **Lifecycle(생명주기)** 개념을 사용한다. 노드가 실행되더라도 바로 작동하는 것이 아니라 `Unconfigured` → `Inactive` → `Active` 상태 전이를 거쳐야 한다.
 
 따라서 `slam_toolbox`가 맵을 생성하게 하려면 노드를 **Activate** 상태로 만들어주어야 한다.
 
@@ -183,9 +183,9 @@ return LaunchDescription([
 ])
 ```
 
-여기까지 설정이 완료되었다면 정상적으로 맵핑이 시작될 것이다.
+여기까지 설정이 완료되었다면 정상적으로 매핑이 시작될 것이다.
 
-`launch` 파일과 `urdf` 파일에 문제가 없다면 정상적으로 맵핑이 될 것이다. 아래는 여기까지 진행시 나오는 Gazebo와 Rviz 화면이다.
+`launch` 파일과 `urdf` 파일에 문제가 없다면 정상적으로 매핑이 될 것이다. 아래는 여기까지 진행시 나오는 Gazebo와 Rviz 화면이다.
 
 ![image-20260202211936614](../images/2026-02-01-Gazebo와 Rviz를 이용한 시뮬레이션/image-20260202211936614.png)
 
@@ -197,6 +197,6 @@ RViz 설정을 마쳤으면 이제 매핑을 테스트하기 위해 Gazebo 환�
 
 ### **마무리**
 
-이번 시간에는 로봇 시뮬레이션 도구인 Gazebo와 시각화 도구인 RViz를 연동하여 SLAM 매핑을 진행해 보았다.
+이번 시간에는 로봇 시뮬레이션 도구인 `Gazebo` 와 시각화 도구인 `RViz` 를 연동하여 `SLAM` 매핑을 진행해 보았다.
 
-특히 **ROS 2 Jazzy** 버전은 아직 레퍼런스가 많지 않아 `ros_gz_bridge` 연결이나 `QoS` 정책 설정, `Lifecycle` 관리 등에서 시행착오가 있었지만, 이를 해결하며 ROS 2의 통신 메커니즘을 더 깊이 이해할 수 있었다. 이 환경을 바탕으로 추후 자율주행 프로젝트를 고도화할 예정이다.
+특히 **ROS 2 jazzy** 버전은 아직 레퍼런스가 많지 않아 `ros_gz_bridge` 연결이나 `QoS` 정책 설정, `Lifecycle` 관리 등에서 시행착오가 있었지만, 이를 해결하며 ROS 2의 통신 메커니즘을 더 깊이 이해할 수 있었다. 이 환경을 바탕으로 추후 자율주행 프로젝트를 고도화할 예정이다.
