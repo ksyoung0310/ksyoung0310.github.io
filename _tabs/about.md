@@ -55,7 +55,7 @@ order: 4
 
 ### **Activities**
 
-- NVIDIA AI Academy(26.10~)
+- **NVIDIA AI Academy**(26.10~)
 
 
 
