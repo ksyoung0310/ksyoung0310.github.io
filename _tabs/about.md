@@ -4,64 +4,65 @@ icon: fas fa-info-circle
 order: 4
 ---
 
-E-mail : tjrduddl0310@gmail.com
+로보틱스와 디지털 트윈 분야의 전문가를 꿈꾸는 엔지니어입니다. 
 
-GitHub : ksyoung0310
+하드웨어와 연동되는 자율주행 및 임베디드 프로젝트 경험을 바탕으로, 관련 분야의 연구 및 실무 역량을 집중적으로 키우고 있습니다.
 
-BOJ : ksyoung0310
+**E-mail : tjrduddl0310@gmail.com**
 
-알고리즘과 개발을 공부하고 있는 개발자입니다.
-
-진로에 대해 많은 고민을 하다가 임베디드 개발자를 꿈꾸는 학생입니다.
+**GitHub : ksyoung0310**
 
 
 
+## 🔨 **Key Skills & Tech Stacks**
 
+로봇/임베디드 개발 및 프로젝트에 실질적으로 활용할 수 있는 기술 스택입니다.
 
-## **Projects**
-
-### <span style="color:green">**SCA(공부 집중력 분석 )(2024.09 ~ 2024.12)**
-
-- 스마트워치와 연동된 앱 개발 - UI 및 백엔드(DB) 개발
-- Android Studio, Firebase
-
-
-
-### <span style="color:green">**OIPP(2025.03 ~ 2025.06)**
-
-- AI를 활용한 사진 분석을 통한 가격 예측 프로그램 개발 - AI 및 백엔드(DB) 개발
-- Python, Firebase
+- **Languages:** C/C++, Python, Java
+- **Robotics & Simulation:** ROS2 (Nav2, SLAM Toolbox), Gazebo, Isaac Sim
+- **App & Backend:** Android Studio, Firebase
+- **OS & Environment:** Linux (Ubuntu)
 
 
 
-## **Activity**
+## 🚀 **Projects**
 
-- 업데이트 예정
+### **SCA(공부 집중력 분석 앱)(2024.04 ~ 2024.12)**
+
+**눈 깜빡임 탐지를 활용한 집중력 분석 및 맞춤형 공부 환경 조성 앱**
+
+1. 주요 역할 및 구현 내용
+   - 사용자의 눈 깜빡임 패턴을 탐지하여 집중도 데이터를 분석하여 시각화
+   - 스마트워치와 연동되는 Android 기반 앱 UI 개발 및 Firebase를 활용한 DB 백엔드 구축
+2. 핵심 성과: 관련 기술 특허 출원 및 기업 기술이전 완료
+
+
+
+### **물류 재고 인식 자율주행 AMR 시스템 개발**(2026.01 ~ 2026.06)
+
+1. 주요 역할 및 구현 내용
+   - 특수한 산업 환경의 물류 자동화를 목표로 한 ROS2 기반 AMR(자율이동로봇) 시스템 구축
+   - LiDAR 센서 데이터를 활용한 2D/3D 매핑 및 SLAM, Localization 구현
+   - Gazebo 및 Isaac Sim을 활용하여 로봇 모델링 후 자율주행 내비게이션 시뮬레이션 및 테스트 수행
+
+
+
+## 🏆 **Awards** & Activities
+
+### Awards
+
+- 2024 - 2학기 캡스톤디자인 경진대회 대상
 
 
 
 ## **Certificate**
 
 - 정보처리기사(2025.12)
-- ADsP(미정)
-- SQLD(미정)
-- 리눅스마스터(미정)
-- AICE(미정)
-
-
-
-## **Awards**
-
-- 2024 - 2학기 한국해양대학교 캡스톤디자인 경진대회 대상
+- 리눅스마스터 2급(예정)
+- ADsP(예정)
+- AICE(예정)
 
 
 
 
-
-
-
-
-
-> Add Markdown syntax content to file `_tabs/about.md`{: .filepath } and it will show up on this page.
-{: .prompt-tip }
 
